@@ -1,0 +1,35 @@
+version: '3.1'
+
+volumes:
+  mongodb-volume:
+  redis-volume:
+
+services:
+  mongodb:
+    image: mongo
+    restart: always
+    volumes:
+      - mongodb-volume:/data/db
+    environment:
+      - MONGO_INITDB_DATABASE=delivery_fee_calculator
+    ports:
+      - 27017:27017
+
+  redis:
+    image: redis
+    restart: always
+    volumes:
+      - redis-volume:/data
+    ports:
+      - 6379:6379
+
+  web:
+    build: .
+    image: delivery_fee_calculator
+    restart: always
+    command: python manage.py runserver 0.0.0.0:8100
+    ports:
+      - 8100:8100
+    depends_on:
+      - mongodb
+      - redis

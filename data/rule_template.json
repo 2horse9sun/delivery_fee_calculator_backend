@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "63cdb68a87605ddd51f5bc49"
+  },
+  "name": "Mininum cart value surcharge",
+  "description": "If the cart value is less than a threshold, a small order surcharge is added to the delivery price.\r\nAll the prices are represented in euro cents.",
+  "function": "min_cart_value_surcharge",
+  "params": "[{\"param_name\":\"min_cart_value\",\"type\":\"int\"}]"
+},{
+  "_id": {
+    "$oid": "63ce232f51ccd22774817fb0"
+  },
+  "name": "Differential pricing by delivery distance",
+  "description": "Delivery fee is based on the range of delivery distance.\r\nAll the prices are represented in euro cents.",
+  "function": "distance_differential_charge",
+  "params": "[{\"param_name\":\"distance_threshold\",\"type\":\"int\"},{\"param_name\":\"base_fee\",\"type\":\"int\"},{\"param_name\":\"additional_distance_step\",\"type\":\"int\"},{\"param_name\":\"additional_fee_per_step\",\"type\":\"int\"}]"
+},{
+  "_id": {
+    "$oid": "63ce23a051ccd22774817fb1"
+  },
+  "name": "Number of items surcharge",
+  "description": "If the number of items is more than a threshold, an additional surcharge is added for each item above with possible bulk fee.\r\nAll the prices are represented in euro cents.",
+  "function": "number_of_items_surcharge",
+  "params": "[{\"param_name\":\"number_of_items_threshold\",\"type\":\"int\"},{\"param_name\":\"additional_surcharge_per_extra_item\",\"type\":\"int\"},{\"param_name\":\"bulk_threshold\",\"type\":\"int\"},{\"param_name\":\"bulk_fee\",\"type\":\"int\"}]"
+},{
+  "_id": {
+    "$oid": "63ce23dc51ccd22774817fb2"
+  },
+  "name": "Maximum delivery fee constraint",
+  "description": "The total delivery fee has an upper bound.\r\nAll the prices are represented in euro cents.",
+  "function": "max_delivery_fee_constraint",
+  "params": "[{\"param_name\":\"max_delivery_fee\",\"type\":\"int\"}]"
+},{
+  "_id": {
+    "$oid": "63ce240451ccd22774817fb3"
+  },
+  "name": "Free delivery fee condition",
+  "description": "The delivery is free when the cart value reaches some threshold.\r\nAll the prices are represented in euro cents.",
+  "function": "free_delivery_fee_condition",
+  "params": "[{\"param_name\":\"cart_value_threshold\",\"type\":\"int\"}]"
+},{
+  "_id": {
+    "$oid": "63ce24a151ccd22774817fb4"
+  },
+  "name": "Extra fee during rush hour",
+  "description": "During the rush hour, the delivery fee (the total fee including possible surcharges) will be increased.\r\nstart_hour/end_hour: 0-24\r\nweekday: 0-6 (Monday-Sunday)\r\nAll the prices are represented in euro cents.",
+  "function": "extra_fee_during_rush_hour",
+  "params": "[{\"param_name\":\"start_hour\",\"type\":\"int\"},{\"param_name\":\"end_hour\",\"type\":\"int\"},{\"param_name\":\"weekday\",\"type\":\"int\"},{\"param_name\":\"percentage\",\"type\":\"int\"}]"
+}]

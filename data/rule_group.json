@@ -1,0 +1,8 @@
+[{
+  "_id": {
+    "$oid": "63ce260e51ccd22774817fbb"
+  },
+  "name": "Helsinki 2023",
+  "description": "Delivery fee calculation rules for Helsinki area in 2023",
+  "rules": "[{\"rule_id\":\"63ce250951ccd22774817fb5\",\"priority\":100},{\"rule_id\":\"63ce252f51ccd22774817fb6\",\"priority\":200},{\"rule_id\":\"63ce255651ccd22774817fb7\",\"priority\":300},{\"rule_id\":\"63ce25b751ccd22774817fba\",\"priority\":400},{\"rule_id\":\"63ce257651ccd22774817fb8\",\"priority\":500},{\"rule_id\":\"63ce259751ccd22774817fb9\",\"priority\":600}]"
+}]

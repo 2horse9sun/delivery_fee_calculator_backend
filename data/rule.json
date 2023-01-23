@@ -1,0 +1,49 @@
+[{
+  "_id": {
+    "$oid": "63ce250951ccd22774817fb5"
+  },
+  "name": "Mininum cart value surcharge 2023",
+  "description": "If the cart value is less than 10€, a small order surcharge is added to the delivery price. The surcharge is the difference between the cart value and 10€. For example if the cart value is 8.90€, the surcharge will be 1.10€.",
+  "rule_template_id": "63cdb68a87605ddd51f5bc49",
+  "params": "[{\"param_name\":\"min_cart_value\",\"param_value\":\"1000\"}]"
+},{
+  "_id": {
+    "$oid": "63ce252f51ccd22774817fb6"
+  },
+  "name": "Differential pricing by delivery distance 2023",
+  "description": "A delivery fee for the first 1000 meters (=1km) is 2€. If the delivery distance is longer than that, 1€ is added for every additional 500 meters that the courier needs to travel before reaching the destination. Even if the distance would be shorter than 500 meters, the minimum fee is always 1€.\r\nExample 1: If the delivery distance is 1499 meters, the delivery fee is: 2€ base fee + 1€ for the additional 500 m => 3€\r\nExample 2: If the delivery distance is 1500 meters, the delivery fee is: 2€ base fee + 1€ for the additional 500 m => 3€\r\nExample 3: If the delivery distance is 1501 meters, the delivery fee is: 2€ base fee + 1€ for the first 500 m + 1€ for the second 500 m => 4€",
+  "rule_template_id": "63ce232f51ccd22774817fb0",
+  "params": "[{\"param_name\":\"distance_threshold\",\"param_value\":\"1000\"},{\"param_name\":\"base_fee\",\"param_value\":\"200\"},{\"param_name\":\"additional_distance_step\",\"param_value\":\"500\"},{\"param_name\":\"additional_fee_per_step\",\"param_value\":\"100\"}]"
+},{
+  "_id": {
+    "$oid": "63ce255651ccd22774817fb7"
+  },
+  "name": "Number of items surcharge 2023",
+  "description": "If the number of items is five or more, an additional 50 cent surcharge is added for each item above and including the fifth item. An extra \"bulk\" fee applies for more than 12 items of 1,20€\r\nExample 1: If the number of items is 4, no extra surcharge\r\nExample 2: If the number of items is 5, 50 cents surcharge is added\r\nExample 3: If the number of items is 10, 3€ surcharge (6 x 50 cents) is added\r\nExample 4: If the number of items is 13, 5,70€ surcharge is added ((9 * 50 cents) + 1,20€)",
+  "rule_template_id": "63ce23a051ccd22774817fb1",
+  "params": "[{\"param_name\":\"number_of_items_threshold\",\"param_value\":\"4\"},{\"param_name\":\"additional_surcharge_per_extra_item\",\"param_value\":\"50\"},{\"param_name\":\"bulk_threshold\",\"param_value\":\"12\"},{\"param_name\":\"bulk_fee\",\"param_value\":\"120\"}]"
+},{
+  "_id": {
+    "$oid": "63ce257651ccd22774817fb8"
+  },
+  "name": "Maximum delivery fee constraint 2023",
+  "description": "The delivery fee can never be more than 15€, including possible surcharges.",
+  "rule_template_id": "63ce23dc51ccd22774817fb2",
+  "params": "[{\"param_name\":\"max_delivery_fee\",\"param_value\":\"1500\"}]"
+},{
+  "_id": {
+    "$oid": "63ce259751ccd22774817fb9"
+  },
+  "name": "Free delivery fee condition 2023",
+  "description": "The delivery is free (0€) when the cart value is equal or more than 100€.",
+  "rule_template_id": "63ce240451ccd22774817fb3",
+  "params": "[{\"param_name\":\"cart_value_threshold\",\"param_value\":\"10000\"}]"
+},{
+  "_id": {
+    "$oid": "63ce25b751ccd22774817fba"
+  },
+  "name": "Extra fee during rush hour 2023",
+  "description": "During the Friday rush (3 - 7 PM UTC), the delivery fee (the total fee including possible surcharges) will be multiplied by 1.2x. However, the fee still cannot be more than the max (15€).",
+  "rule_template_id": "63ce24a151ccd22774817fb4",
+  "params": "[{\"param_name\":\"start_hour\",\"param_value\":\"15\"},{\"param_name\":\"end_hour\",\"param_value\":\"19\"},{\"param_name\":\"weekday\",\"param_value\":\"4\"},{\"param_name\":\"percentage\",\"param_value\":\"20\"}]"
+}]

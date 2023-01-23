@@ -1,0 +1,6 @@
+Django==4.1.5
+pymongo==4.3.3
+dnspython==2.3.0
+redis==4.4.2
+django-redis==5.2.0
+django-cors-headers==3.13.0
