@@ -163,6 +163,8 @@ All in all, the main idea for the delivery fee calculator is:
 3. Use the calculation functions defined by each rule to accumulate the delivery fee.
 4. Output the total fee and all the partial charges.
 
+Next problem is how to properly store all those rules for better performance. Since rules have frequent reads and less writes, it's reasonable to cache them like in Redis. Also, we don't perform complicated transactional queries on rules and the structure of a rule may change frequently. So that it will be a nightmare if we define a schema for a rule and store them in a relational database. Instead, I store them in NoSQL database like MongoDB.
+
 
 # Architecture
 ## High Level View of Backend
