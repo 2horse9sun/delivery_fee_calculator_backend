@@ -31,28 +31,34 @@ def find_rules(location):
 
 def calculate_delivery_fee(request):
     if request.method == 'GET':
-        delivery_info = request.GET.dict()
-        cart_value = int(delivery_info['cart_value'])
-        delivery_distance = int(delivery_info['delivery_distance'])
-        number_of_items = int(delivery_info['number_of_items'])
-        time = datetime.fromisoformat(delivery_info['time'])
-        # Assume that different locations follow different delivery fee rules for simplicity. 
-        # In production, many other factors could determine the rules.
-        location = delivery_info['location']
-        
+        try:
+            delivery_info = request.GET.dict()
+            cart_value = int(delivery_info['cart_value'])
+            delivery_distance = int(delivery_info['delivery_distance'])
+            number_of_items = int(delivery_info['number_of_items'])
+            time = datetime.fromisoformat(delivery_info['time'])
+            # Assume that different locations follow different delivery fee rules for simplicity. 
+            # In production, many other factors could determine the rules.
+            location = delivery_info['location']
+            
+        except Exception as error:
+            return JsonResponse(error_response("Invalid parameters"))
 
-        
-        # Find all rules associated with the particular location
-        rules = find_rules(location)
-        total_fee = 0
-        charge_info = []
-        for rule in rules:
-            # Every rule will trigger a function to calculate the partial charge for the delivery
-            charge = calculate_function.calculate_function_map[rule['function']](rule['params'], total_fee, cart_value, delivery_distance, number_of_items, time)
-            charge_info.append({
-                "rule_template_name": rule['rule_template_name'],
-                "charge": charge
-            })
-            total_fee += charge
-        
-        return JsonResponse(success_response({"delivery_fee": total_fee, "charge_info": charge_info}))
+        try:
+            
+            # Find all rules associated with the particular location
+            rules = find_rules(location)
+            total_fee = 0
+            charge_info = []
+            for rule in rules:
+                # Every rule will trigger a function to calculate the partial charge for the delivery
+                charge = calculate_function.calculate_function_map[rule['function']](rule['params'], total_fee, cart_value, delivery_distance, number_of_items, time)
+                charge_info.append({
+                    "rule_template_name": rule['rule_template_name'],
+                    "charge": charge
+                })
+                total_fee += charge
+            
+            return JsonResponse(success_response({"delivery_fee": total_fee, "charge_info": charge_info}))
+        except Exception as error:
+            return JsonResponse(error_response(error))
