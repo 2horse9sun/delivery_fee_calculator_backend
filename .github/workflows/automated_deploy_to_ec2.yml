@@ -48,4 +48,4 @@ jobs:
           command: |
             cd /home/ec2-user/delivery_fee_calculator_backend
             git pull
-            docker compose up -d
+            docker compose up -d --build
